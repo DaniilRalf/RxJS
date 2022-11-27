@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {debounceTime, fromEvent, map, mergeMap, switchMap, tap} from "rxjs";
+import {debounceTime, fromEvent, map, mergeMap, Observable, switchMap, tap} from "rxjs";
 import {ajax} from "rxjs/internal/ajax/ajax";
 
 @Component({
@@ -16,7 +16,7 @@ export class Test2Component implements OnInit, AfterViewInit {
   ngOnInit(): void { }
 
   ngAfterViewInit() {
-    let stream$ = fromEvent(this.new_input.nativeElement, 'input')
+    let stream$: Observable<string> = fromEvent(this.new_input.nativeElement, 'input')
       .pipe(                              //указываем что результат наблюдаемого обьекта мы будем изенять
         map((item: any) => {       //изменяем каждый элемент слушаемого обьекта
           return item.target.value;
