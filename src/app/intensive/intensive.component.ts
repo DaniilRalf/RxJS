@@ -23,7 +23,7 @@ export class IntensiveComponent implements OnInit {
   }
 
   test_1() {
-    this.sequence1$ =  new Observable( (observer) => { //"Наблюдаемому" аргументом передаем "Наблюдаетель"
+    this.sequence1$ =  new Observable( (observer: any) => { //"Наблюдаемому" аргументом передаем "Наблюдаетель"
       let count: number = 1;
       const interval = setInterval(() => {
         if (count > 15) {
@@ -36,7 +36,7 @@ export class IntensiveComponent implements OnInit {
     })
 
     this.sequence1$.subscribe({ //подписываемся на "Наблюдаемого"
-      next(v) { //вызываем метод "Наблюдателя" (можно более короткой записью)
+      next(v: any) { //вызываем метод "Наблюдателя" (можно более короткой записью)
         console.log(v)
       },
       complete() {
@@ -72,11 +72,11 @@ export class IntensiveComponent implements OnInit {
     //Холодный пример: не смотря на то что мы подписались вторым сабом на 3 секунды позже,
     //мы все равно получаем данные с нуля а не с того момента на котором был уже первый саб
     this.sequence2$ = interval(1000)
-    let sub1 = this.sequence2$.subscribe( (i) => {
+    let sub1 = this.sequence2$.subscribe( (i: any) => {
       console.log('Sub-1', i)
     })
     setTimeout( () => {
-      let sub2 = this.sequence2$.subscribe( (i) => {
+      let sub2 = this.sequence2$.subscribe( (i: any) => {
         console.log('Sub-2', i)
       })
     }, 3000)
@@ -84,11 +84,11 @@ export class IntensiveComponent implements OnInit {
     //Горячий пример: получаем только данные с момента подписки,
     //для примера используем поток кликов мыши по документу
     this.sequence3$ = fromEvent<MouseEvent>(document, 'click')
-    let sub3 = this.sequence3$.subscribe( (i) => {
+    let sub3 = this.sequence3$.subscribe( (i: any) => {
       console.log('Sub-3', i)
     })
     setTimeout( () => {
-      let sub4 = this.sequence3$.subscribe( (i) => {
+      let sub4 = this.sequence3$.subscribe( (i: any) => {
         console.log('Sub-4', i)
       })
     }, 3000)
