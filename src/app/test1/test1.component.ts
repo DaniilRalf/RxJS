@@ -30,7 +30,23 @@ export class Test1Component implements OnInit, AfterViewInit {
 
   constructor() { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+
+    /* * Основная концепция Сабскрайбера выглядит так */
+    const test2 = new Observable((subscriber) => {
+      subscriber.next(2);
+    });
+    const subscriber = {
+      next: (x: any) => { console.log(x)},
+      error: () => {},
+      complete: () => {}
+    }
+    const subscriber2 = {
+      next: (x: any) => { console.log(x)},
+    }
+    test2.subscribe(subscriber)
+
+  }
 
   ngAfterViewInit(): void { //вызываем подписку именно тут только для того чтобы инициализировались данные ДОМ
     this.observTest$.subscribe(qqq => {
