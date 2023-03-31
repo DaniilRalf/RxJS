@@ -8,6 +8,7 @@ import { Test2Component } from './test2/test2.component';
 import { Test3Component } from './test3/test3.component';
 import { IntensiveComponent } from './intensive/intensive.component';
 import { OperatorsComponent } from './operators/operators.component';
+import { ObsSubjBehsubjComponent } from './obs-subj-behsubj/obs-subj-behsubj.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { OperatorsComponent } from './operators/operators.component';
     Test2Component,
     Test3Component,
     IntensiveComponent,
-    OperatorsComponent
+    OperatorsComponent,
+    ObsSubjBehsubjComponent
   ],
   imports: [
     BrowserModule,

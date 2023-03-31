@@ -12,7 +12,7 @@ import {
   fromEvent,
   map,
   debounceTime,
-  Subject
+  Subject, from, distinctUntilChanged
 } from "rxjs";
 
 @Component({
@@ -36,6 +36,7 @@ export class OperatorsComponent implements OnInit {
     // this.takeUntil()
     // this.fromEvent()
     // this.debounceTime()
+    this.distinctUntilChanged()
   }
 
 
@@ -185,6 +186,18 @@ export class OperatorsComponent implements OnInit {
               */
           }
         )
+      }
+
+
+      /* * combineLatest
+      * * Испускает значение только когда текущее значение отличается от последнего */
+      distinctUntilChanged() {
+        const source$ = from([1, 1, 2, 2, 3, 3])
+        source$
+          .pipe(distinctUntilChanged())
+          .subscribe((item) => {
+            console.log(item) // output: 1,2,3
+          })
       }
 
   /*? Operators===========================================================================================*/
