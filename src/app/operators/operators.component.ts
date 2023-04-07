@@ -12,7 +12,7 @@ import {
   fromEvent,
   map,
   debounceTime,
-  Subject, from, distinctUntilChanged
+  Subject, from, distinctUntilChanged, withLatestFrom
 } from "rxjs";
 
 @Component({
@@ -36,7 +36,8 @@ export class OperatorsComponent implements OnInit {
     // this.takeUntil()
     // this.fromEvent()
     // this.debounceTime()
-    this.distinctUntilChanged()
+    // this.distinctUntilChanged()
+    this.withLatestFrom()
   }
 
 
@@ -198,6 +199,24 @@ export class OperatorsComponent implements OnInit {
           .subscribe((item) => {
             console.log(item) // output: 1,2,3
           })
+      }
+
+
+      /* * withLatestFrom
+      * * Объединяет исходный Observable с другими Observable для создания Observable,
+      * * значения которого рассчитываются на основе последних значений каждого, только когда ИСТОЧНИК выдает элемент */
+      withLatestFrom() {
+        const source = interval(5000)  //emit every 5s
+        const secondSource = interval(1000)  //emit every 1s
+        source.pipe(
+          withLatestFrom(secondSource),
+        ).subscribe((item) => {
+          console.log(item)
+          // Вывод каждые 5 секунд
+          // [0, 4]
+          // [1, 9]
+          // [2, 14]...
+        })
       }
 
   /*? Operators===========================================================================================*/
